@@ -12,12 +12,42 @@ $( "form" ).submit(function( event ) {
  
  f = $( "input:eq(0)" ).val();
   num_variables = Math.clip(parseInt($( "input:eq(1)" ).val()), 0, 26);
- calcf();
+ //calcf();
+ kvtable();
 
   event.preventDefault();
 });
 
 var characters = "abcdefghijklmnopqrstuvwxyz";
+
+function kvtable()
+{	
+	var s = "";
+	if(num_variables%2 == 0)
+	{
+		s = "<tr>";
+		for(var i = 0; i < Math.sqrt(Math.pow(2, num_variables)); ++i)
+		{
+			s+= "<th><input type= 'string' id='" + ("header" + i) + "'></th>"; 
+		}
+		s += "</tr>";
+		$('#kv-table').append(s);
+		for(var a = 0; a < Math.sqrt(Math.pow(2, num_variables)); ++a)
+		{
+			s = "<tr>";
+			s += "<th><input type= 'string' id='" + ("side" + a) + "'></th>";
+			for(var b = 0; b < Math.sqrt(Math.pow(2, num_variables)); ++b)
+			{
+				s+= "<th><input type= 'int' id='" + (a * Math.sqrt(Math.pow(2, num_variables)) + b) + "'></th>"; 
+			}
+			s += "</tr>";
+			$('#kv-table').append(s);
+		}
+	}
+	else
+	{
+	}
+}
 
 function createMinTerm(vars)
 {
@@ -189,6 +219,7 @@ function McCluskeyIter(minTerms)
 	else
 		return newArr;
 }
+
 function calcf() {
 
 
@@ -253,7 +284,6 @@ for(var row = 0; row < max; ++row)
 	}
 }
 $('#table-01').append( "</tbody>");
-
 
 s = "f=";
 for(var i= 0; i < minTerms.length; ++i)

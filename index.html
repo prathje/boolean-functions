@@ -17,7 +17,7 @@
 <form action="">
   <div>
     <input type="text" name="f">
-	 <input type="number" name="num_variabels">
+	 <input type="int" name="num_variabels">
     <input type="submit">
   </div>
 </form>
@@ -44,19 +44,20 @@ this.value = 'Show'; }">Wertetabelle</button>
 		<div style="display: none;">
 		 <table id="table-01" style="width:40%">
   <caption>Wertetabelle</caption>
-  <tr>
   <thead>
+	<tr>
 		<th>a</th>
 		<th>b</th>
 		<th>f</th>
+	</tr>
 	</thead>
-  </tr>
+  </table>
 		</div>
 
 	</div>
 </div>
   
-</table>
+
 
 <div id="minterm">
 
@@ -70,10 +71,12 @@ this.value = 'Show'; }">Wertetabelle</button>
  <div id="dmf">
 
 </div>
- <div id="kmf">
+ <div id="kmf"> </div>
 
-</div>
-  
+ <table id="kv-table" style="width:40%" border=1>
+  <caption>KV-Diagramm</caption>
+  </table>
+
    <script src="scripts/main.js"></script>
    </body>
   </html>
