@@ -27,14 +27,32 @@ function createMinTerm(vars)
 		if(vars[i] > 0)
 			s+= characters.charAt(i);
 		else
-			s+= "~" + characters.charAt(i);
+			s+= "!" + characters.charAt(i);
 		if(i < vars.length-1)
 		s += "&";
 	}
 	//s += ")";
 	return s;
-
 }
+
+function createMaxTerm(vars)
+{
+	var s ="("; //"(";
+	for(var i= 0; i < vars.length; ++i)
+	{
+		if(vars[i] == 0)
+			s+= characters.charAt(i);
+		else
+			s+= "!" + characters.charAt(i);
+		if(i < vars.length-1)
+		s += "|";
+		else
+		s += ")";
+	}
+	//s += ")";
+	return s;
+}
+
 function calcf() {
 
 
@@ -43,6 +61,7 @@ var temp = f;
 var variables = [];
 var tempVariable = 0;
 var minTerms = [];
+var maxTerms = [];
 for(var i= num_variables; i > 0; --i)
 {
 	variables.push(tempVariable);
@@ -78,7 +97,13 @@ for(var row = 0; row < max; ++row)
 	
 	var out = Math.clip(parseInt(eval(temp)), 0, 1);
 	if(out == 1)
+	{
 		minTerms.push(createMinTerm(variables));
+	}
+	else
+	{
+		maxTerms.push(createMaxTerm(variables));
+	}
 	$('#table-01').append( s + "<td>" + out + "</td></tr>");
 	for(var i= variables.length-1; i >= 0; --i)
 	{
@@ -101,6 +126,14 @@ for(var i= 0; i < minTerms.length; ++i)
 			if(i < minTerms.length-1)
 			s += "|";	
 	}
-	
+
 	$('#minterm').html(s);
+s = "f=";
+for(var i = 0; i < maxTerms.length; i++)
+{
+	s+= maxTerms[i];
+	if(i < maxTerms.length - 1)
+	s += "&";
+}
+	$('#maxterm').html(s);
 }
