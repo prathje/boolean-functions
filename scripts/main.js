@@ -53,6 +53,142 @@ function createMaxTerm(vars)
 	return s;
 }
 
+/** Function count the occurrences of substring in a string;
+ * @param {String} string   Required. The string;
+ * @param {String} subString    Required. The string to search for;
+ * @param {Boolean} allowOverlapping    Optional. Default: false;
+ */
+function StringOccurrences(string, subString, allowOverlapping){
+
+    string+=""; subString+="";
+    if(subString.length<=0) return string.length+1;
+
+    var n=0, pos=0;
+    var step=(allowOverlapping)?(1):(subString.length);
+
+    while(true){
+        pos=string.indexOf(subString,pos);
+        if(pos>=0){ n++; pos+=step; } else break;
+    }
+    return(n);
+}
+
+function minimizeMinTerms(minTerms)
+{
+	
+	var s = "DMF: f=";
+	var arr = McCluskeyIter(minTerms);
+	for(var i= 0; i < arr.length; ++i)
+	{
+			s+= arr[i];
+		
+		if(i < arr.length-1)
+		s += "|";
+	}	
+	return s;
+	
+}
+
+
+function DeleteCharsFromString(str, start, len)
+{
+return (str.substring(0, start) + str.substring(start+len, str.length));
+}
+function McCluskeyIter(minTerms)
+{
+	var newArr = [];
+	var checkArr = [];
+	var changed = false;
+	for( var a = 0; a < minTerms.length; ++a)
+	{
+		checkArr.push(false);
+	}
+	for( var a = 0; a < minTerms.length; ++a)
+	{
+		for( var b = a+1; b < minTerms.length; ++b)
+		{
+			
+			// check if we got a match
+			var diffs = 0;
+			var offset = 0;
+			var newTerm = minTerms[a];
+			for( var i = 0; i < num_variables; ++i)
+			{
+				var compare_string = characters.charAt(i);
+				
+				var oc1 = minTerms[a].indexOf(characters.charAt(i));
+				var oc2 = minTerms[b].indexOf(characters.charAt(i));
+				
+			
+				if(oc1 != oc2  && (oc1 == -1 || oc2 == -1))
+				{
+					diffs = 2;
+					break;
+				}
+				else if(oc1 == -1 && oc2 == -1)
+				{
+					continue;
+				}
+				if(oc1 - oc2 + offset == -1) //bei oc2 kommt der buchstabe eine stellespäter
+				{
+					++diffs;
+					--offset;					
+					if(oc1 == minTerms[a].length-1)
+						newTerm = DeleteCharsFromString(newTerm, oc1-1, 2);
+					else
+						newTerm = DeleteCharsFromString(newTerm, oc1, 2);
+				}
+				else if(oc1-oc2 + offset == 1) // bei oc1 kommt buchstabe später
+				{
+					++diffs;
+					++offset;
+					if(oc1 == minTerms[a].length-1)
+						newTerm = DeleteCharsFromString(newTerm, oc1-2, 3);
+					else
+						newTerm = DeleteCharsFromString(newTerm, oc1-1, 3);
+				}
+				else if(oc1 == oc2  + offset)
+				{
+					//do absolutely nothing
+				}
+				else
+				{
+				diffs = 2;
+					break; }
+
+					
+			}
+			if(diffs == 1)
+			{
+				newArr.push(newTerm);
+				checkArr[a] = true;
+				checkArr[b] = true;
+				changed = true;
+			}
+			else if(diffs == 0)
+			{
+				newArr.push(newTerm);			
+				checkArr[a] = true;
+				checkArr[b] = true;
+				changed = true;
+			}
+			else
+			{
+			
+			
+			}
+		}
+	}
+	for( var a = 0; a < checkArr.length; ++a)
+	{
+		if(checkArr[a] == false)
+			newArr.push(minTerms[a]);
+	}
+	if(changed == true)
+		return McCluskeyIter(newArr);
+	else
+		return newArr;
+}
 function calcf() {
 
 
@@ -136,4 +272,6 @@ for(var i = 0; i < maxTerms.length; i++)
 	s += "&";
 }
 	$('#maxterm').html(s);
+	$('#dmf').html(minimizeMinTerms(minTerms));
+	
 }
