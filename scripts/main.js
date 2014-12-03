@@ -10,9 +10,12 @@ var f = "";
 var num_variables = 1;
 var kv_rows = 0;
 var kv_columns = 0;
-var kv = new kvTabelle({rows: 4, columns: 2, KVCells: [0,0,0,0,1,1,1,1]});
-var kvView = new kvTabelleView({model: kv});
-kvView.render();
+//var kv = new kvTabelle({rows: 4, columns: 2, KVCells: [0,0,0,0,1,1,1,1]});
+//var kvView = new kvTabelleView({model: kv});
+//kvView.render();
+var wertreihe = new Wertetabellereihe({numVariables: 3, term: "!a&b&!c"});
+var wertreiheview = new WertetabellereiheView({model: wertreihe});
+wertreiheview.render();
 $( "form" ).submit(function( event ) {
  
  f = $( "input:eq(0)" ).val();
