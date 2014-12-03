@@ -1,15 +1,16 @@
 var ValueTableView = Backbone.View.extend({
 	render: function(){
-		var s = "<tr>";
+		var s = "<table style='width:40%'> <thead> <tr>";
 		for(var i = 0; i < this.model.get("numVariables"); ++i){
-			s+="<td>" + this.model.get("namesVariables")[this.model.get("numVariables")-i-1] + "</td>";
+			s+="<th>" + this.model.get("namesVariables")[this.model.get("numVariables")-i-1] + "</th>";
 		}
-		s += "<td>out</td></tr>";
+		s += "<th>out</th></tr> </thead> <tbody>";
 		this.$el.append(s);
 		for(var i = 0; i < Math.pow(2, this.model.get("numVariables")); ++i){
 			this.model.rows[i].render();
 			this.$el.append(this.model.rows[i].$el);
 		}
+		this.$el.append("</tbody> </table>");
 	}
 });
 
@@ -27,7 +28,7 @@ var ValueTableRowView = Backbone.View.extend({
 			}
 		}
 		s += "<td class='outputvalue'>" + this.model.get("output") + "</td>";
-		this.$el.append(s);
+		this.$el.append(s + "</tr>");
 		var self = this.model;
 		this.$el.find(".outputvalue").first().on( "click", function(event){
 			if(self.get("output") == 0){
