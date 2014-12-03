@@ -12,6 +12,7 @@ var app = null;
   app.mainView = new MainView({el: $("#content")});
   app.router = new Router({el: $("#content")});
 })(jQuery);
+
 /*
 
 Math.clip = function(number, min, max) {
