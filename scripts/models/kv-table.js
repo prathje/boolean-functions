@@ -1,7 +1,7 @@
 var Wertetabelle = Backbone.Model.extend({
 	defaults: {
 		numVariables: 0,
-		namesVariables: [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
+		namesVariables: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
 		minTerms: []
 	}
 });

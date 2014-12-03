@@ -2,7 +2,8 @@ var Router = Backbone.Router.extend({
 		routes: {
 			"": "welcome",
 			"welcome": "welcome",
-			"input": "input",
+			"input-function": "inputFunction",
+			"input-table": "inputTable",
 			"output": "output"
 		},
 		initialize: function() {
@@ -13,17 +14,18 @@ var Router = Backbone.Router.extend({
 			this.welcome();
 		},
 		welcome: function() {
-		//app.mainView.goto(app.welcomeView);
 			var next =  new WelcomeView();
 			app.mainView.goto(next);
 		},
-		input: function() {
-			//app.mainView.goto(app.inputView);
-			var next =  new InputView();
+		inputFunction: function() {
+			var next =  new InputFunctionView();
+			app.mainView.goto(next);
+		},
+		inputTable: function() {
+			var next =  new InputTableView();
 			app.mainView.goto(next);
 		},
 		output: function() {
-			//app.mainView.goto(app.outputView);
 			var next =  new OutputView();
 			app.mainView.goto(next);
 		},

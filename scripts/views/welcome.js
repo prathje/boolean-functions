@@ -1,22 +1,22 @@
 var WelcomeView = Backbone.View.extend({
 		className  : 'welcome',
 		events: {
-			'click #input-link': 'input',
-			'click #output-link': 'output',
+			'click #input-function': 'inputFunction',
+			'click #input-table': 'inputTable',
 		},
-		input: function(e) {
+		inputFunction: function(e) {
 			e.preventDefault();
-			app.router.navigate('input', {trigger: true});
+			app.router.navigate('input-function', {trigger: true});
 			//app.router.input();
 		},
-		output: function(e) {
+		inputTable: function(e) {
 			e.preventDefault();
-			app.router.navigate('output', {trigger: true});
+			app.router.navigate('input-table', {trigger: true});
 		},
 		initialize: function() {
 		},
 		render: function() {
-			this.$el.append("welcome");
-			this.$el.append("<a id='input-link' href='http://www.tagesschau.de/'>in</a> <a id='output-link' href='http://www.tagesschau.de/'>out</a> ");
+			this.$el.append("choose:");
+			this.$el.append("<a id='input-function' href='http://www.tagesschau.de/'>Function</a> <a id='input-table' href='http://www.tagesschau.de/'>Table</a> ");
 		}
 });
