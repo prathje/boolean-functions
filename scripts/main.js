@@ -21,6 +21,9 @@ var f = "";
 var num_variables = 1;
 var kv_rows = 0;
 var kv_columns = 0;
+var kv = new kvTabelle({rows: 4, columns: 2, KVCells: [0,0,0,0,1,1,1,1]});
+var kvView = new kvTabelleView({model: kv});
+kvView.render();
 $( "form" ).submit(function( event ) {
  
  f = $( "input:eq(0)" ).val();
@@ -36,36 +39,10 @@ $( "form" ).submit(function( event ) {
 		kv_columns = Math.sqrt(Math.pow(2, num_variables-1));
 		kv_rows = Math.sqrt(Math.pow(2, num_variables+1));
 	}
- kvtable();
-
   event.preventDefault();
 });
 
 var characters = "abcdefghijklmnopqrstuvwxyz";
-
-function kvtable()
-{	
-	$('#kv-table').empty();
-	var s = "";
-	for(var a = 0; a <= kv_columns; ++a)
-		{
-			s = "<tr>";
-			for(var b = 0; b <= kv_rows; ++b)
-			{
-				if(a == 0){
-					s+= "<th><input type= 'string' id='top" + (b-1) + "'></th>";
-				}
-				else if(b == 0){
-					s+= "<th><input type= 'string' id='side" + (a-1) + "'></th>";
-				}
-				else{
-					s+= "<th><input type= 'int' id='" + ((a-1) * Math.sqrt(Math.pow(2, num_variables)) + (b-1)) + "'></th>";
-				}
-			}
-			s += "</tr>";
-			$('#kv-table').append(s);
-		}
-}
 
 function getMintermsFromKV()
 {
