@@ -5,8 +5,8 @@ var OutputView = Backbone.View.extend({
 		render: function() {
 			this.$el.append("output");
 			var valuemodel = new ValueTable({numVariables: 2, minTerms: ["!b&!a, !b&a, b&!a, b&a"]});
-			var valueview = new ValueTableView({model: valuerow});
-			valuerowview.render();
-			this.$el.append(valuerowview.$el);
+			var valueview = new ValueTableView({model: valuemodel});
+			valueview.render();
+			this.$el.append(valueview.$el);
 		}
 });

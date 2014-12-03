@@ -1,7 +1,14 @@
 var ValueTableView = Backbone.View.extend({
 	render: function(){
+		var s = "<tr>";
+		for(var i = 0; i < this.model.get("numVariables"); ++i){
+			s+="<td>" + this.model.get("namesVariables")[this.model.get("numVariables")-i-1] + "</td>";
+		}
+		s += "<td>out</td></tr>";
+		this.$el.append(s);
 		for(var i = 0; i < Math.pow(2, this.model.get("numVariables")); ++i){
 			this.model.rows[i].render();
+			this.$el.append(this.model.rows[i].$el);
 		}
 	}
 });
