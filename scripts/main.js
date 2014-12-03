@@ -8,11 +8,23 @@ Math.clip = function(number, min, max) {
 }
 var f = "";
 var num_variables = 1;
+var kv_rows = 0;
+var kv_columns = 0;
 $( "form" ).submit(function( event ) {
  
  f = $( "input:eq(0)" ).val();
   num_variables = Math.clip(parseInt($( "input:eq(1)" ).val()), 0, 26);
  //calcf();
+	if(num_variables%2 == 0)
+	{
+		kv_columns = Math.sqrt(Math.pow(2, num_variables));
+		kv_rows = Math.sqrt(Math.pow(2, num_variables));
+	}
+	else
+	{
+		kv_columns = Math.sqrt(Math.pow(2, num_variables-1));
+		kv_rows = Math.sqrt(Math.pow(2, num_variables+1));
+	}
  kvtable();
 
   event.preventDefault();
@@ -22,30 +34,38 @@ var characters = "abcdefghijklmnopqrstuvwxyz";
 
 function kvtable()
 {	
+	$('#kv-table').empty();
 	var s = "";
-	if(num_variables%2 == 0)
-	{
-		s = "<tr>";
-		for(var i = 0; i < Math.sqrt(Math.pow(2, num_variables)); ++i)
-		{
-			s+= "<th><input type= 'string' id='" + ("header" + i) + "'></th>"; 
-		}
-		s += "</tr>";
-		$('#kv-table').append(s);
-		for(var a = 0; a < Math.sqrt(Math.pow(2, num_variables)); ++a)
+	for(var a = 0; a <= kv_columns; ++a)
 		{
 			s = "<tr>";
-			s += "<th><input type= 'string' id='" + ("side" + a) + "'></th>";
-			for(var b = 0; b < Math.sqrt(Math.pow(2, num_variables)); ++b)
+			for(var b = 0; b <= kv_rows; ++b)
 			{
-				s+= "<th><input type= 'int' id='" + (a * Math.sqrt(Math.pow(2, num_variables)) + b) + "'></th>"; 
+				if(a == 0){
+					s+= "<th><input type= 'string' id='top" + (b-1) + "'></th>";
+				}
+				else if(b == 0){
+					s+= "<th><input type= 'string' id='side" + (a-1) + "'></th>";
+				}
+				else{
+					s+= "<th><input type= 'int' id='" + ((a-1) * Math.sqrt(Math.pow(2, num_variables)) + (b-1)) + "'></th>";
+				}
 			}
 			s += "</tr>";
 			$('#kv-table').append(s);
 		}
-	}
-	else
+}
+
+function getMintermsFromKV()
+{
+	var terms = [];
+	for(var i = 0; i < Math.pow(2, num_variables); ++i)
 	{
+		var cell = document.getElementById(i);
+		if(cell.value == 1)
+		{
+			terms.push(document.getElementById("top"+(i%rows)) + "&" + document.getElementById("side" + ((i-(i%rows))/rows))); 
+		}
 	}
 }
 
