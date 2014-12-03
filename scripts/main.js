@@ -1,7 +1,18 @@
 //(c) Patrick Rathje und Nils Ziermann
-$( document ).ready(function() {
-    
-});
+var app = null;
+(function ($) {
+  
+  AppView = Backbone.View.extend({
+    el: $("content"),
+    initialize: function () {
+    }
+  });
+  
+  app = new AppView();
+  app.mainView = new MainView({el: $("#content")});
+  app.router = new Router({el: $("#content")});
+})(jQuery);
+/*
 
 Math.clip = function(number, min, max) {
   return Math.max(min, Math.min(number, max));
@@ -83,11 +94,7 @@ function createMaxTerm(vars)
 	return s;
 }
 
-/** Function count the occurrences of substring in a string;
- * @param {String} string   Required. The string;
- * @param {String} subString    Required. The string to search for;
- * @param {Boolean} allowOverlapping    Optional. Default: false;
- */
+
 function StringOccurrences(string, subString, allowOverlapping){
 
     string+=""; subString+="";
@@ -304,4 +311,4 @@ for(var i = 0; i < maxTerms.length; i++)
 	$('#maxterm').html(s);
 	$('#dmf').html(minimizeMinTerms(minTerms));
 	
-}
+} */

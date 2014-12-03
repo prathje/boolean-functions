@@ -7,82 +7,23 @@
    <meta name="keywords" content="">
    <meta name="content-language" content="de">
    <meta name="robots" content="index, follow">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
- <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+	<script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
   </head>
   <body>
-  
+
+
+	<div id="content"> </div>
+	<script src="scripts/models/kv-table.js"></script>
+	<script src="scripts/views/input-table.js"></script>
+	<script src="scripts/views/input-function.js"></script>
+	<script src="scripts/views/output.js"></script>
+	<script src="scripts/views/welcome.js"></script>
+	<script src="scripts/views/main.js"></script>
+	<script src="scripts/router.js"></script>
    
-   
-   <p>your function f=</p>
-<form action="">
-  <div>
-    <input type="text" name="f">
-	 <input type="int" name="num_variabels">
-    <input type="submit">
-  </div>
-</form>
-
- 
-<script>
-
-</script>
-
-
-
-
-
-
- <div class="spoiler">
-<div class="smallfont"> 
-	<button  style="margin: 0px; padding: 0px; width:100px; height:20px; font-size: 10px;" onclick="if
-(this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {
-this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = '';this.innerText = 'Wertetabelle'; this.value = 'Hide';
-} else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerText = 'Wertetabelle';
-this.value = 'Show'; }">Wertetabelle</button>
-<button onclick=> KV-Diagramm einlesen </button>
-	</div>
-	<div class="alt2">
-		<div style="display: none;">
-		 <table id="table-01" style="width:40%">
-  <caption>Wertetabelle</caption>
-  <thead>
-	<tr>
-		<th>a</th>
-		<th>b</th>
-		<th>f</th>
-	</tr>
-	</thead>
-  </table>
-		</div>
-
-	</div>
-</div>
-
-<div id="container-kv"> </div>
-
-
-<div id="minterm">
-
-</div>
-
-<div id="maxterm">
-
-</div>
-  
-  
- <div id="dmf">
-
-</div>
- <div id="kmf"> </div>
-
- <table id="kv-table" style="width:40%" border=1>
-  <caption>KV-Diagramm</caption>
-  </table>
-
-   <script src="scripts/models/kv-diagram.js"></script>
-   <script src="scripts/views/page.js"></script>
+   <script src="scripts/views/kv-table.js"></script>
    <script src="scripts/main.js"></script>
    </body>
   </html>
