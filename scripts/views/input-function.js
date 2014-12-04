@@ -7,7 +7,6 @@ var InputFunctionView = Backbone.View.extend({
 		output: function(e) {
 			e.preventDefault();
 			app.router.navigate('output', {trigger: true});
-			app.router.output();
 		},
 		render: function() {
 		this.$el.append("input-function");
