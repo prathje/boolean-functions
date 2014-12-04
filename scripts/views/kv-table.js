@@ -5,6 +5,7 @@ var KVTableView = Backbone.View.extend({
 		this.model.on("change", this.render);
 	},
 	render: function(){
+		this.$el.empty();
 		var s = "<table>";
 		for(var a = 0; a < this.model.get("columns"); ++a)
 		{
