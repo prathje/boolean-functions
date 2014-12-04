@@ -4,7 +4,7 @@ var OutputView = Backbone.View.extend({
 		},
 		render: function() {
 			this.$el.append("output");
-			var valuemodel = new ValueTable({numVariables: 2, minTerms: ["!b&!a, !b&a, b&!a, b&a"]});
+			var valuemodel = new ValueTable({numVariables: 4});
 			var valueview = new ValueTableView({model: valuemodel});
 			this.$el.append(valueview.render());
 		}
