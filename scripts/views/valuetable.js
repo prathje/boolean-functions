@@ -7,8 +7,7 @@ var ValueTableView = Backbone.View.extend({
 		s += "<th>out</th></tr> </thead> <tbody>";
 		this.$el.append(s);
 		for(var i = 0; i < Math.pow(2, this.model.get("numVariables")); ++i){
-			this.model.rows[i].render();
-			this.$el.append(this.model.rows[i].$el);
+			this.$el.append(this.model.rows[i].render().$el);
 		}
 		this.$el.append("</tbody> </table>");
 	}
