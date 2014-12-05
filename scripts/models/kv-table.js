@@ -66,3 +66,28 @@ var DMF = Backbone.Model.extend({
 		DMFTerms: []
 	}
 });
+
+var kvMap = Backbone.Model.extend({
+	defaults: {
+		num_Terms: 0,
+		row: 0,
+		columns: 0,
+		terms: [],
+		output: [],
+		sliders: []
+	}
+});
+	
+var kvSlider = Backbone.Model.extend({
+		defaults: {
+			position_x: 0,
+			position_y: 0,
+			height: 0,
+			length: 0,
+			top: undefined,
+			positions: [],
+			term: "",
+			termelem: "",
+			connectedbox: false
+		}
+});

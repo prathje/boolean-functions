@@ -67,3 +67,10 @@ var MinTerm = Backbone.View.extend({
 
 
 });
+
+var kvSliderView = Backbone.View.extend({
+
+});
+	
+var kvSliderTermView = Backbone.View.extend({
+});	
