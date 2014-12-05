@@ -2,15 +2,17 @@ var ValueTable = Backbone.Model.extend({
 	defaults: {
 		numVariables: 0,
 		namesVariables: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
-		givenTerms: []
+		givenTerms: [],
+		changeable: true
 	},
 	rows: [],
 	minTerms: [],
+	output: [],
 	positiveTerms: new Map(),
 	initialize: function(){
 		this.generateMinTerms();
 		for(var i = 0; i < Math.pow(2, this.get("numVariables")); ++i){
-			var rowmodel = new ValueTableRow({numVariables: this.get("numVariables"), term: this.minTerms[i]});
+			var rowmodel = new ValueTableRow({numVariables: this.get("numVariables"), term: this.minTerms[i], parent: this, rownumber: i, changeable: this.get("changeable")});
 			var rowview = new ValueTableRowView({model: rowmodel});
 			this.rows.push(rowview);
 		}

@@ -35,15 +35,18 @@ var ValueTableRowView = Backbone.View.extend({
 		s += "<td class='outputvalue kv-table-field'>" + this.model.get("output") + "</td>";
 		this.$el.append(s);
 		var self = this.model;
-		this.$el.find(".outputvalue").first().on( "click", function(event){
-			if(self.get("output") == 0){
-				self.set("output", 1);
-			}
-			else{
-				self.set("output", 0);
-			}
-			$(event.target).html(self.get("output"));
-		});
+		if(this.model.get("changeable")){
+			this.$el.find(".outputvalue").first().on( "click", function(event){
+				if(self.get("output") == 0){
+					self.set("output", 1);
+					self.parent.
+				}
+				else{
+					self.set("output", 0);
+				}
+				$(event.target).html(self.get("output"));
+			});
+		}
 		return this.$el;
 	}
 });
